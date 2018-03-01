@@ -36,27 +36,47 @@ th : gravitational bending angle
 r_l      = 2 * G * m_l / cee / cee
 r_S      = 2 * G * m_S / cee / cee
 
+# the basic equations relevant to bending:
+
 r    = d_l * t_il
 th   = 2 * r_l / r
 t_si = th * d_sl / d_s
 
 t_si * t_il = 2 * r_l * d_sl / d_s / d_l
 
+# renormalize parameters
+
 ed = d_l/d_s
 K  = d_l/(1 - ed)
-ed: [0,epsilon]
+ed: [0,epsilon]    # lens distance over source distance
 
 em = m_l / m_S
 r_l = em * r_S
-em : [0,epsilon]
+em : [0,epsilon]   # lens mass over solar mass
 
-ft = t_si / t_il
-t_si = ft * t_il
-ft : [0,epsilon]
+t_il * t_si = em * (1 - ed) * 2 * r_S / d_l
 
-t_il * t_il * ft = em * (1 - ed) * 2 * r_S / d_l
+1) The product t_il * t_si has an upper limit of 2 * r_S / d_l
 
-t_il * t_il = ( (1-ed) * em / ft ) * 2 * r_S / d_l
+2) There are two images for a given lens source separation
+   This parametrization makes that difficult to see.
+
+3) How do the two images vary with time ?  Position mainly.
+   Brightness is related as well.  There is a magnitude detection limit.
+   This can be used to insist that one image is suppressed.
+
+4) Look for the second image in microlensing event images
+
+5) look for pairs of spectroscopic twins that have similar parallax but the parallax is inconsistent with reddening/radial velocity .
+GitHub: agabrown/SpectroscopicTwins  python script for spectroscopic twins
+
+
+
+Some things to look for, there are two lensed images.
+
+
+
+So, the max value for t_il would be when ed <<1, em ~ 1, and 
 
 
 Now, sample reasonable values for everything
