@@ -52,11 +52,14 @@ server <- function(input, output) {
     masprad <- 206265e3 # milliarcseconds per radian
     arcsprad <- 206265 # arcseconds per radian
     pcpyr   <- 0.307 # light speed [parsecs per year]
-    m_S <- 2e30 # mass of sun [kg]
-    G <- 6.67e-11 # grav constant
+    mppc <- 3.086e16 # meters per parsec
     cee <- 3e8 # speed of light [m/s]
-    mppc <- 3.1e16 # meters per parsec
-    RMax = 3600 * (180/pi) * sqrt(4 * G * m_S / cee / cee / mppc) # [arcsec]
+    Gee <- 6.67e-11 # grav constant
+    m_S <- 2e30 # mass of sun [kg]
+
+    r_S <- 2 * Gee * m_S / cee / cee
+    
+    RMax = 3600 * (180/pi) * sqrt(2 * r_S / mppc) # [arcsec]
 
     r_e <- reactive({RMax * sqrt(input$Lens_Mass *
                                    ((1 / input$Lens_Distance) 
